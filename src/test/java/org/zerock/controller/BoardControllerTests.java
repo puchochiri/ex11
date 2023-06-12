@@ -1,5 +1,8 @@
 package org.zerock.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -42,78 +45,81 @@ public class BoardControllerTests {
 		
 	}
 	
-	//@Test
-	//public void testList() throws Exception {
-		
-	//	log.info("testList실행");
-		
-	//	log.info(
-	//			mockMvc.perform(MockMvcRequestBuilders.get("/board/list"))
-	//			.andReturn()
-	//			.getModelAndView()
-	//			.getModelMap()
-	//			);
-		
-	//}
-	
 	@Test
-	public void testListPaging() throws Exception {
+	public void testList() throws Exception {
 		
-		log.info("testListPaging 실행");
-		log.info(mockMvc.perform(
-				MockMvcRequestBuilders.get("/board/list")
-				.param("pageNum", "2")
-				.param("amount", "50"))
-				.andReturn().getModelAndView().getModelMap());
-		
-	}
-	
-	
-	@Test
-	public void testRegister() throws Exception{
-		
-		log.info("testRegister 실행");
-		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/board/register")
-				.param("title", "테스트 새글 제목")
-				.param("content", "테스트 새글 내용")
-				.param("writer", "user00")
-			).andReturn().getModelAndView().getViewName();
-		
-		log.info(resultPage);
-	}
-	
-	@Test
-	public void testGet() throws Exception {
-		log.info("testGet 실행");
-		log.info(mockMvc.perform(MockMvcRequestBuilders
-				.get("/board/get")
-				.param("bno", "30"))
-				.andReturn()
-				.getModelAndView().getModelMap());
-	}
-	
-	@Test
-	public void testModify() throws Exception {
-		log.info("testModify");
-		String resultPage = mockMvc
-				.perform(MockMvcRequestBuilders.post("/board/modify")
-						.param("bno", "1")
-						.param("title", "수정된 테스트 새글 제목")
-						.param("content", "수정된 테스트 새글 내용")
-						.param("writer", "user00"))
-				.andReturn().getModelAndView().getViewName();
-		
-		log.info(resultPage);
-	}
+		log.info("testList실행");
 
-	
-	@Test
-	public void testRemove() throws Exception{
-		//삭제전 데이터베이스에 게시물 번호 확인 할 것
-		log.info("testRemove 실행");
-		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/board/remove")
-				.param("bno", "25")
-				).andReturn().getModelAndView().getViewName();
-		log.info(resultPage);
+
+		log.info(
+				mockMvc.perform(
+				MockMvcRequestBuilders.get("/board/list")
+				.param("BNO", "2"))
+				.andReturn()
+				.getModelAndView()
+				.getModelMap()
+				);
+		
 	}
+	
+//	@Test
+//	public void testListPaging() throws Exception {
+//		
+//		log.info("testListPaging 실행");
+//		log.info(mockMvc.perform(
+//				MockMvcRequestBuilders.get("/board/list")
+//				.param("pageNum", "2")
+//				.param("amount", "50"))
+//				.andReturn().getModelAndView().getModelMap());
+//		
+//	}
+//	
+//	
+//	@Test
+//	public void testRegister() throws Exception{
+//		
+//		log.info("testRegister 실행");
+//		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/board/register")
+//				.param("title", "테스트 새글 제목")
+//				.param("content", "테스트 새글 내용")
+//				.param("writer", "user00")
+//			).andReturn().getModelAndView().getViewName();
+//		
+//		log.info(resultPage);
+//	}
+//	
+//	@Test
+//	public void testGet() throws Exception {
+//		log.info("testGet 실행");
+//		log.info(mockMvc.perform(MockMvcRequestBuilders
+//				.get("/board/get")
+//				.param("bno", "30"))
+//				.andReturn()
+//				.getModelAndView().getModelMap());
+//	}
+//	
+//	@Test
+//	public void testModify() throws Exception {
+//		log.info("testModify");
+//		String resultPage = mockMvc
+//				.perform(MockMvcRequestBuilders.post("/board/modify")
+//						.param("bno", "1")
+//						.param("title", "수정된 테스트 새글 제목")
+//						.param("content", "수정된 테스트 새글 내용")
+//						.param("writer", "user00"))
+//				.andReturn().getModelAndView().getViewName();
+//		
+//		log.info(resultPage);
+//	}
+//
+//	
+//	@Test
+//	public void testRemove() throws Exception{
+//		//삭제전 데이터베이스에 게시물 번호 확인 할 것
+//		log.info("testRemove 실행");
+//		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/board/remove")
+//				.param("bno", "25")
+//				).andReturn().getModelAndView().getViewName();
+//		log.info(resultPage);
+//	}
 }

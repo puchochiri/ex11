@@ -10,21 +10,17 @@ import org.apache.ibatis.annotations.Param;
 
 public interface TblBoardMasterMapper {
 	
-	//@Select("select * from tbl_board where bno > 0")
-	public List<Map<String, Object>> getListMaster(Map<String, Object> map);
+	public List<Map<String, Object>> getListMaster();
 
-	
 	public void insertMaster(Map<String, Object> map);
 	
-//	public void insertSelectKey(BoardVO board);
-//	
 	public Map<String, Object> readMaster(Map<String, Object> map);
-//	
+	
 	public int deleteMaster(Map<String, Object> map);
-//	
+
 	public int updateMaster(Map<String, Object> map);
-//
-//	public List<BoardVO> getListWithPaging(Criteria cri);
+
+	//	public List<BoardVO> getListWithPaging(Criteria cri);
 //	
 //	public int getTotalCount(Criteria cri);
 //	

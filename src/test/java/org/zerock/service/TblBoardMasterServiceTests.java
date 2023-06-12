@@ -1,4 +1,4 @@
-package org.zerock.mapper;
+package org.zerock.service;
 
 import java.util.HashMap;
 import java.util.List;
@@ -21,34 +21,38 @@ import lombok.extern.log4j.Log4j2;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j2
-public class BoardMapperTests {
+public class TblBoardMasterServiceTests {
 	
 	@Setter(onMethod_ = @Autowired)
-	private BoardMapper mapper;
+	private TblBoardMasterService service;
+
+	
+	
+	
 	
 	@Test
-	public void testGetList() {
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		
-		map.put("bno", 2);
-		mapper.getList(map).forEach(board -> log.info(board));
+	public void testGetListMaster() {
+
+		service.getListMaster().forEach(board -> log.info(board));
 		
 	}
 	
 	
 	@Test
-	public void testInsert() {
+	public void testInsertMaster() {
 		Map<String, Object> map = new HashMap<String, Object>();
 
-		map.put("GCODE", "COMMUNITY");
-		map.put("TITLE", "TITLEINSERT");
-		map.put("CONTENT", "TITLEINSERT");
+		map.put("GCODE","HOSPITAL");
+		map.put("GDEPTH", "1");
+		map.put("GTITLE", "건강");
+		map.put("ETC1", "");
+		map.put("ETC2", "");
+		map.put("ETC3", "");
 		map.put("WRITER", "푸초취리");
 		map.put("FIRSTREGISTER", "doawishfor");
 		map.put("LASTREGISTER", "doawishfor");
 		
-		mapper.insert(map);
+		service.insertMaster(map);
 		
 		log.info(map);
 		
@@ -69,33 +73,32 @@ public class BoardMapperTests {
 //	}
 	
 	@Test
-	public void testRead() {
+	public void testReadMaster() {
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		
-		map.put("bno", 2);
+		map.put("GCODE", "COMMUNITY");
 		log.info("testRead");
 		// 존재하는 게시물 번호로 테스트
-		map = mapper.read(map);
+		map = service.readMaster(map);
 		
 		log.info(map);
 		
 	}
 	
 	@Test
-	public void testDelete() {
+	public void testDeleteMaster() {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 
-		map.put("BNO", "2");
 		map.put("GCODE", "COMMUNITY");
 		log.info("testDelete");
 
-		log.info("DELETE COUNT: " + mapper.delete(map));
+		log.info("DELETE COUNT: " + service.deleteMaster(map));
 	}
 	
 	@Test
-	public void testUpdate() {
+	public void testUpdateMaster() {
 		log.info("testUpdate");
 
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -106,15 +109,17 @@ public class BoardMapperTests {
 //				LASTREGISTER = #{LASTREGISTER},
 //				UPDATEDATE = SYSDATE
 //				WHERE BNO = #{BNO}
-		map.put("BNO", "2");
 		map.put("GCODE", "COMMUNITY");
-		map.put("TITLE", "TITLEUPDATE");
-		map.put("CONTENT", "CONTENTUPDATE");
+		map.put("GDEPTH", "1");
+		map.put("GTITLE", "커뮤니티수정");
+		map.put("ETC1", "");
+		map.put("ETC2", "");
+		map.put("ETC3", "");
 		map.put("WRITER", "푸초취리");
 		map.put("FIRSTREGISTER", "doawishfor");
 		map.put("LASTREGISTER", "doawishfor");
 		
-		int count = mapper.update(map);
+		int count = service.updateMaster(map);
 		log.info("UPDATE COUNT: " + count);
 	}
 //	

@@ -2,25 +2,29 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.zerock.mapper.BoardMapper">
+<mapper namespace="org.zerock.mapper.TblBoardMasterMapper">
 
 	<insert id="insertMaster" parameterType="map">
 	INSERT
 	INTO
-	MULTIBOARD_EX.TBL_BOARD
-	(BNO,
-	GCODE,
-	TITLE,
-	CONTENT,
+	MULTIBOARD_EX.TBL_BOARD_MASTER
+	(GCODE,
+	GDEPTH,
+	GTITLE,
+	ETC1,
+	ETC2,
+	ETC3,
 	WRITER,
 	FIRSTREGISTER,
 	REGDATE,
 	LASTREGISTER,
 	UPDATEDATE)
-	VALUES(seq_board.nextval,
-	#{GCODE},
-	#{TITLE},
-	#{CONTENT},
+	VALUES(#{GCODE},
+	#{GDEPTH},
+	#{GTITLE},
+	#{ETC1},
+	#{ETC2},
+	#{ETC3},
 	#{WRITER},
 	#{FIRSTREGISTER},
 	SYSDATE,
@@ -31,31 +35,64 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="readMaster" parameterType="map" resultType="map">
 	<![CDATA[
-	select * from tbl_board where bno = #{bno}
-	
+	SELECT
+		GCODE,
+		GDEPTH,
+		GTITLE,
+		ETC1,
+		ETC2,
+		ETC3,
+		WRITER,
+		FIRSTREGISTER,
+		REGDATE,
+		LASTREGISTER,
+		UPDATEDATE
+	FROM
+		MULTIBOARD_EX.TBL_BOARD_MASTER
+	 WHERE GCODE = #{GCODE}
 	]]>
 	</select>
 	
 	<select id="getListMaster" parameterType="map" resultType="map">
 	<![CDATA[
-	select * from tbl_board where bno > #{bno}
+	SELECT
+	GCODE,
+	GDEPTH,
+	GTITLE,
+	ETC1,
+	ETC2,
+	ETC3,
+	WRITER,
+	FIRSTREGISTER,
+	REGDATE,
+	LASTREGISTER,
+	UPDATEDATE
+	FROM
+	MULTIBOARD_EX.TBL_BOARD_MASTER
 	]]>
 	</select>
 	
 	<update id="updateMaster" parameterType="map">
 	UPDATE
-	MULTIBOARD_EX.TBL_BOARD
+	MULTIBOARD_EX.TBL_BOARD_MASTER
 	SET
-	TITLE = #{TITLE},
-	CONTENT = #{TITLE},
+	GDEPTH = #{GDEPTH},
+	GTITLE = #{GTITLE},
+	ETC1 = #{ETC1},
+	ETC2 = #{ETC2},
+	ETC3 = #{ETC3},
+	WRITER = #{WRITER},
 	LASTREGISTER = #{LASTREGISTER},
 	UPDATEDATE = SYSDATE
-	WHERE BNO = #{BNO}
+	WHERE GCODE = #{GCODE}
 	</update>
 
 	<delete id="deleteMaster" parameterType="map">
-		DELETE FROM MULTIBOARD_EX.TBL_BOARD
-		WHERE BNO=#{BNO} AND GCODE=#{GCODE}; 
+	DELETE
+	FROM
+	MULTIBOARD_EX.TBL_BOARD_MASTER
+	WHERE
+	GCODE = #{GCODE} 
 	</delete>
 	
 </mapper>
