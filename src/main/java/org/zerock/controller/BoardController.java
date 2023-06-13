@@ -3,6 +3,7 @@ package org.zerock.controller;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,23 +30,35 @@ import lombok.extern.log4j.Log4j2;
 @Controller
 @Log4j2
 @RequestMapping("/board/*")
+@AllArgsConstructor
 public class BoardController {
 	
 	private BoardService service;
 	
-	
 	@GetMapping("/list")
-    public void getList(@RequestParam Map<String, Object> parameter) {
+	public void list(Model model) {
+		log.info("list");
+		Map<String, Object> map = new HashMap<String, Object>();
 		
-		log.info("controller getList실행:" + parameter);
-
-
-		List<Map<String, Object>> employeeList = service.getList(parameter);
+		map.put("BNO", 2);
 		
-		log.info("controller getList실행 employeeList:" + employeeList);
-
-
-    }
+		model.addAttribute("list", service.getList(map));
+	}
+	
+	
+//	@GetMapping("/list")
+////    public void getList(@RequestParam Map<String, Object> parameter) {
+//	public void getList(@RequestParam Map<String, Object> parameter, Model model) {
+//		
+//		
+//		log.info("controller getList실행:" + parameter);
+//		
+//		List<Map<String, Object>> employeeList = service.getList(parameter);
+//		
+//		log.info("controller getList실행 employeeList:" + employeeList);
+//
+//		model.addAttribute("list",employeeList);
+//    }
     
     @RequestMapping(value="insert.do")
     public ModelAndView insert(@RequestParam Map<String, Object> parameter) {
