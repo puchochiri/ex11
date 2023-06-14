@@ -35,42 +35,29 @@ public class BoardController {
 	
 	private BoardService service;
 	
+//	@GetMapping("/list")
+//	public void list(Model model) {
+//		log.info("list");
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		
+//		map.put("BNO", 2);
+//		
+//		model.addAttribute("list", service.getList(map));
+//	}
+	
 	@GetMapping("/list")
-	public void list(Model model) {
+	public List<Map<String, Object>> list(@RequestParam Map<String, Object> map) {
 		log.info("list");
-		Map<String, Object> map = new HashMap<String, Object>();
 		
-		map.put("BNO", 2);
 		
-		model.addAttribute("list", service.getList(map));
+		log.info("serviceimpl list 실행:" + map);
+
+		return service.getList(map);
 	}
 	
-	
-//	@GetMapping("/list")
-////    public void getList(@RequestParam Map<String, Object> parameter) {
-//	public void getList(@RequestParam Map<String, Object> parameter, Model model) {
-//		
-//		
-//		log.info("controller getList실행:" + parameter);
-//		
-//		List<Map<String, Object>> employeeList = service.getList(parameter);
-//		
-//		log.info("controller getList실행 employeeList:" + employeeList);
-//
-//		model.addAttribute("list",employeeList);
-//    }
     
-    @RequestMapping(value="insert.do")
-    public ModelAndView insert(@RequestParam Map<String, Object> parameter) {
-        ModelAndView mav = new ModelAndView();
-
-
-		 service.insert(parameter);
-
-
-        return mav;
-    }
-    
+//    @PostMapping("/register")
+//    public String register(M)
     
 	
 	

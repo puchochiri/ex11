@@ -31,7 +31,7 @@ public class BoardMapperTests {
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		
-		map.put("bno", 2);
+		map.put("BNO", 2);
 		mapper.getList(map).forEach(board -> log.info(board));
 		
 	}

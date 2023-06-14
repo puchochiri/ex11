@@ -45,13 +45,31 @@ public class BoardControllerTests {
 		
 	}
 	
+//	@Test
+//	public void testList() throws Exception {
+//		
+//		log.info("testList실행");
+//		
+//		log.info(
+//				mockMvc.perform(MockMvcRequestBuilders.get("/board/list"))
+//				.andReturn()
+//				.getModelAndView()
+//				.getModelMap()
+//				);
+//		
+//	}
+	
+	
 	@Test
 	public void testList() throws Exception {
 		
 		log.info("testList실행");
 		
+		
+		
 		log.info(
-				mockMvc.perform(MockMvcRequestBuilders.get("/board/list"))
+				mockMvc.perform(MockMvcRequestBuilders.get("/board/list")
+				.param("BNO", "2"))
 				.andReturn()
 				.getModelAndView()
 				.getModelMap()
