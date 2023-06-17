@@ -91,18 +91,40 @@ public class BoardControllerTests {
 //	}
 //	
 //	
-//	@Test
-//	public void testRegister() throws Exception{
-//		
-//		log.info("testRegister 실행");
-//		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/board/register")
-//				.param("title", "테스트 새글 제목")
-//				.param("content", "테스트 새글 내용")
-//				.param("writer", "user00")
-//			).andReturn().getModelAndView().getViewName();
-//		
-//		log.info(resultPage);
-//	}
+	@Test
+	public void testRegister() throws Exception{
+		
+		log.info("testRegister 실행");
+		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/board/register")
+				.param("GCODE", "COMMUNITY")
+				.param("TITLE", "TITLEINSERT 새글 내용")
+				.param("CONTENT", "TITLEINSERT")
+				.param("WRITER", "푸초취리")
+				.param("FIRSTREGISTER", "doawishfor")
+				.param("LASTREGISTER", "doawishfor")
+				).andReturn().getModelAndView().getViewName();
+		log.info(resultPage);
+	}
+	
+	
+	
+	@Test
+	public void testread() throws Exception {
+		
+		log.info("testread실행");
+		
+		
+		
+		log.info(
+				mockMvc.perform(MockMvcRequestBuilders.get("/board/get")
+				.param("BNO", "22"))
+				.andReturn()
+				.getModelAndView()
+				.getModelMap()
+				);
+		
+	}
+	
 //	
 //	@Test
 //	public void testGet() throws Exception {

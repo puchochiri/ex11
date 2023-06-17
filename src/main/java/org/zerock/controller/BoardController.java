@@ -58,6 +58,35 @@ public class BoardController {
     
 //    @PostMapping("/register")
 //    public String register(M)
+    @PostMapping("/register")
+    public  String register(@RequestParam Map<String, Object> map, RedirectAttributes rttr) {
+    	log.info("register: " + map);
+    	service.insert(map);
+    	rttr.addFlashAttribute("result", map.get("BNO"));
+		return "redirect:/board/list";
+    	
+		    	
+    }
+    
+    @GetMapping("/get")
+    public void get(@RequestParam Map<String, Object> map, Model model) {
+    
+    	log.info("/get");
+    	
+    	model.addAttribute("board", service.read(map));
+    	
+    	
+    }
+    
+    @PostMapping("/update")
+    public  String update(@RequestParam Map<String, Object> map, RedirectAttributes rttr) {
+    	log.info("register: " + map);
+    	service.insert(map);
+    	rttr.addFlashAttribute("result", map.get("BNO"));
+		return "redirect:/board/list";
+    	
+		    	
+    }
     
 	
 	
